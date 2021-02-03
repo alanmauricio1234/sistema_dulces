@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/template :: head">
+
+</head>
+
+<body>
+	<header th:replace="plantilla/template_ventas :: header"></header>
+	<!-- Se presentan los productos -->
+	<div class="container">
+		<div class="row row-cols-1 row-cols-md-2">
+			<div class="col-md-4" th:each="dulce : ${catalogo}">
+				<div class="card">
+					<img th:src="@{'/imagenes/' + ${dulce.imagen}}"
+						class="card-img-top" alt="dulce" height="200">
+					<div class="card-body">
+						<h5 class="card-title" th:text="${dulce.nombre}">Card title</h5>
+						<p class="card-text" th:text="${dulce.descripcion}">Descripcion</p>
+						<p class="card-text" th:text="${dulce.calcularPrecio}">Precio</p>
+						<a th:href="@{'/ventas/producto/' + ${dulce.id}}" href="#"
+							class="btn btn-primary"> 
+							<i class="fas fa-shopping-cart"></i>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div>
+		<br></br>
+	</div>
+
+	<footer th:replace="plantilla/template_ventas :: footer"></footer>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/template :: head">
+
+</head>
+
+<body>
+	<header th:replace="plantilla/template :: header"></header>
+	
+	<div class="container">
+	<h1>Lista de Productos</h1>
+	<a class="btn btn-primary btn-sm" th:href="@{/gestion_productos/agregar_producto}"
+	 th:text="'Nuevo Producto'" title="Crear nuevo producto"></a>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Marca</th>
+					<th scope="col">Stock</th>
+					<th scope="col">Categoria</th>
+					<th scope="col">Precio</th>
+					<th scope="col">Descuento</th>
+					<th scope="col">Editar</th>
+					<th scope="col">Eliminar</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="dulce : ${dulces}">
+					<th scope="row" th:text="${dulce.id}">1</th>
+					<td th:text="${dulce.nombre}">Mark</td>
+					<td th:text="${dulce.marca}">Otto</td>
+					<td th:text="${dulce.cantidad}">@mdo</td>
+					<td th:text="${dulce.categoria.nombre}">@mdo</td>
+					<td th:text="${dulce.precio}">@mdo</td>
+					<td th:text="${dulce.descuento}">@mdo</td>
+					<td>
+						<a class="btn btn-success btn-sm" 
+						th:href="@{/gestion_productos/editar_producto/} + ${dulce.id}"
+	 					th:text="'Editar'" title="Editar Producto"></a>
+					</td>
+					<td>
+						<a class="btn btn-danger btn-sm" 
+						th:href="@{/gestion_productos/eliminar_producto/} + ${dulce.id}"
+	 					th:text="'Eliminar'" title="Eliminar Producto"
+	 					onclick="return confirm('¿Está seguro de eliminar el producto?');"></a>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+	<footer th:replace="plantilla/template :: footer"></footer>
+</body>
+
+</html>
